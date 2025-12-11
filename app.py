@@ -12,8 +12,8 @@ import unicodedata
 import time # <--- NEW: For animation timing
 
 # --- CONFIGURATION ---
-st.set_page_config(page_title="Gemini Pro-Translator", page_icon="🎬")
-st.title("🎬 Gemini Pro-Translator (Cinematic)")
+st.set_page_config(page_title="Gemini Pro-Translator", page_icon="💎")
+st.title("💎 Gemini PPT Translator")
 
 # --- API KEY ---
 api_key = None
@@ -379,4 +379,5 @@ if api_key:
         st.download_button("Download Result", out, f"Cinematic_Translated_{uploaded_file.name}")
 
 else:
+
     st.warning("Please enter API Key in the sidebar.")
