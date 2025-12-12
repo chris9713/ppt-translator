@@ -52,14 +52,14 @@ st.markdown("""
         /* A. NORMAL STATE (Not moused over) */
         [data-testid='stFileUploader'] button {
             color: white !important;              /* TEXT COLOR (Normal) */
-            background-color: #4CAF50;            /* BACKGROUND COLOR (Normal) */
+            background-color: #3294e4;            /* BACKGROUND COLOR (Normal) */
             border: none;
         }
     
         /* B. HOVER STATE (Moused over) */
         [data-testid='stFileUploader'] button:hover {
             color: white !important;              /* TEXT COLOR (Hover) */
-            background-color: #45a049;            /* BACKGROUND COLOR (Hover) */
+            background-color: #20c9f9;            /* BACKGROUND COLOR (Hover) */
             border: none;
         }
 
@@ -446,5 +446,6 @@ if api_key:
 else:
 
     st.warning("Please enter API Key in the sidebar.")
+
 
 
