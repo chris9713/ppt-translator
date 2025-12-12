@@ -28,7 +28,17 @@ st.markdown("""
         border: 2px dashed #dfe1e5;
         border-radius: 12px;
         padding: 30px;
-        transition: all 0.3s ease-in-out; /* Smooth transition */
+        transition: all 0.3s ease-in-out;
+    }
+
+    /* FIX: Force text inside the uploader to be dark so it is visible on white */
+    [data-testid='stFileUploader'] section > div {
+        color: #31333F !important; /* Dark Grey Text */
+    }
+    
+    /* FIX: Target the small instruction text specifically if needed */
+    [data-testid='stFileUploader'] small {
+        color: #555555 !important; /* Slightly lighter grey for "Limit 200MB" etc */
     }
 
     /* THE DYNAMIC EFFECT: When dragging/hovering */
@@ -39,13 +49,14 @@ st.markdown("""
         box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3); /* Blue glow shadow */
     }
 
-    /* Style the text inside the uploader to match */
+    /* Style the upload button inside to match */
     [data-testid='stFileUploader'] section:hover button {
         border-color: #2196f3;
         color: #2196f3;
+        background-color: white; /* Keep button text readable */
     }
     
-    /* Optional: Add a subtle pulsing animation to the border */
+    /* Pulsing animation */
     @keyframes border-pulse {
         0% { border-color: #2196f3; }
         50% { border-color: #64b5f6; }
@@ -428,3 +439,4 @@ if api_key:
 else:
 
     st.warning("Please enter API Key in the sidebar.")
+
