@@ -242,7 +242,7 @@ if api_key:
     with col3:
         replace_images = st.checkbox("Translate Images?", value=True)
 
-    if uploaded_file and st.button("Deep Translate"):
+    if uploaded_file and st.button("Translate & Keep Formatting"):
         
         prs = Presentation(uploaded_file)
         
@@ -381,4 +381,5 @@ if api_key:
 else:
 
     st.warning("Please enter API Key in the sidebar.")
+
 
