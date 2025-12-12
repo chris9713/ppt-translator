@@ -17,31 +17,29 @@ st.set_page_config(page_title="Gemini Pro-Translator", page_icon="💎")
 # --- CUSTOM CSS FOR DYNAMIC DRAG-AND-DROP ---
 st.markdown("""
 <style>
-    /* Target the main Drag and Drop Section */
+    /* 1. Target the main Drag and Drop Section */
     [data-testid='stFileUploader'] {
         width: 100%;
     }
     
-    /* The actual dropzone box */
+    /* 2. The actual dropzone box - Default State */
     [data-testid='stFileUploader'] section {
-        background-color: #f8f9fa; /* Default light grey */
+        background-color: #f8f9fa; /* Light grey background */
         border: 2px dashed #dfe1e5;
         border-radius: 12px;
         padding: 30px;
         transition: all 0.3s ease-in-out;
     }
 
-    /* FIX: Force text inside the uploader to be dark so it is visible on white */
-    [data-testid='stFileUploader'] section > div {
-        color: #31333F !important; /* Dark Grey Text */
-    }
-    
-    /* FIX: Target the small instruction text specifically if needed */
-    [data-testid='stFileUploader'] small {
-        color: #555555 !important; /* Slightly lighter grey for "Limit 200MB" etc */
+    /* 3. HARD TEXT COLOR FIX: Force all text inside to be dark grey 
+       This overrides the "white on hover" issue for spans, divs, and small text */
+    [data-testid='stFileUploader'] section > div,
+    [data-testid='stFileUploader'] section span,
+    [data-testid='stFileUploader'] section small {
+        color: #31333F !important;
     }
 
-    /* THE DYNAMIC EFFECT: When dragging/hovering */
+    /* 4. THE DYNAMIC EFFECT: When dragging/hovering */
     [data-testid='stFileUploader'] section:hover {
         background-color: #e3f2fd; /* Light Blue Background */
         border: 2px dashed #2196f3; /* Bright Blue Border */
@@ -49,14 +47,10 @@ st.markdown("""
         box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3); /* Blue glow shadow */
     }
 
-    /* Style the upload button inside to match */
-    [data-testid='stFileUploader'] section:hover button {
-        border-color: #2196f3;
-        color: #2196f3;
-        background-color: white; /* Keep button text readable */
-    }
-    
-    /* Pulsing animation */
+    /* 5. REMOVED the specific button styling rule. 
+       This allows the "Browse files" button to stay its native color. */
+
+    /* 6. Pulsing animation for the border */
     @keyframes border-pulse {
         0% { border-color: #2196f3; }
         50% { border-color: #64b5f6; }
@@ -439,5 +433,3 @@ if api_key:
 else:
 
     st.warning("Please enter API Key in the sidebar.")
-
-
