@@ -376,8 +376,9 @@ if api_key:
         out = io.BytesIO()
         prs.save(out)
         out.seek(0)
-        st.download_button("Download Result", out, f"Cinematic_Translated_{uploaded_file.name}")
+        st.download_button("Download Result", out, f"Translated_{uploaded_file.name}")
 
 else:
 
     st.warning("Please enter API Key in the sidebar.")
+
