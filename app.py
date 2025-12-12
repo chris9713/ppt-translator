@@ -25,7 +25,7 @@ st.markdown("""
     /* 2. The actual dropzone box - Default State */
     [data-testid='stFileUploader'] section {
         background-color: #f8f9fa; /* Light grey background */
-        border: 2px dashed #dfe1e5;
+        border: 2px dashed #f8f9fa;
         border-radius: 12px;
         padding: 30px;
         transition: all 0.3s ease-in-out;
@@ -446,6 +446,7 @@ if api_key:
 else:
 
     st.warning("Please enter API Key in the sidebar.")
+
 
 
 
