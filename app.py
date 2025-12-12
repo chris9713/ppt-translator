@@ -9,10 +9,55 @@ import io
 import json
 import re
 import unicodedata
-import time # <--- NEW: For animation timing
+import time
 
 # --- CONFIGURATION ---
 st.set_page_config(page_title="Gemini Pro-Translator", page_icon="💎")
+
+# --- CUSTOM CSS FOR DYNAMIC DRAG-AND-DROP ---
+st.markdown("""
+<style>
+    /* Target the main Drag and Drop Section */
+    [data-testid='stFileUploader'] {
+        width: 100%;
+    }
+    
+    /* The actual dropzone box */
+    [data-testid='stFileUploader'] section {
+        background-color: #f8f9fa; /* Default light grey */
+        border: 2px dashed #dfe1e5;
+        border-radius: 12px;
+        padding: 30px;
+        transition: all 0.3s ease-in-out; /* Smooth transition */
+    }
+
+    /* THE DYNAMIC EFFECT: When dragging/hovering */
+    [data-testid='stFileUploader'] section:hover {
+        background-color: #e3f2fd; /* Light Blue Background */
+        border: 2px dashed #2196f3; /* Bright Blue Border */
+        transform: scale(1.02); /* Slight pop/zoom effect */
+        box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3); /* Blue glow shadow */
+    }
+
+    /* Style the text inside the uploader to match */
+    [data-testid='stFileUploader'] section:hover button {
+        border-color: #2196f3;
+        color: #2196f3;
+    }
+    
+    /* Optional: Add a subtle pulsing animation to the border */
+    @keyframes border-pulse {
+        0% { border-color: #2196f3; }
+        50% { border-color: #64b5f6; }
+        100% { border-color: #2196f3; }
+    }
+    
+    [data-testid='stFileUploader'] section:hover {
+        animation: border-pulse 2s infinite;
+    }
+</style>
+""", unsafe_allow_html=True)
+
 st.title("💎 Gemini PPT Translator")
 
 # --- API KEY ---
@@ -232,6 +277,8 @@ if api_key:
         model = genai.GenerativeModel('gemini-1.5-flash')
 
     st.write("### Upload Presentation")
+    
+    # The Custom CSS above will automatically apply to this file_uploader
     uploaded_file = st.file_uploader("Choose .pptx", type="pptx")
     
     col1, col2, col3 = st.columns(3)
@@ -240,7 +287,7 @@ if api_key:
     with col2:
         target_font = st.selectbox("Font Family", ["Montserrat", "Arial", "Calibri", "Malgun Gothic"])
     with col3:
-        replace_images = st.checkbox("Translate Images?", value=True)
+        replace_images = st.checkbox("Translate Images?", value=False)
 
     if uploaded_file and st.button("Translate & Keep Formatting"):
         
@@ -339,7 +386,7 @@ if api_key:
             # Phase 4: Layouts & Images (Remaining budget)
             for shape, text_frame in iter_text_frames(slide.shapes):
                 if shape and not shape.has_table:
-                     fix_text_overflow_centered(shape, text_frame.text)
+                      fix_text_overflow_centered(shape, text_frame.text)
 
             for shape in slide.shapes:
                 if shape.has_table:
@@ -381,5 +428,3 @@ if api_key:
 else:
 
     st.warning("Please enter API Key in the sidebar.")
-
-
