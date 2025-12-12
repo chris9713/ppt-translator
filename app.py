@@ -47,8 +47,12 @@ st.markdown("""
         box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3); /* Blue glow shadow */
     }
 
-    /* 5. REMOVED the specific button styling rule. 
-       This allows the "Browse files" button to stay its native color. */
+    /* 5. Button Styling - Force White Text */
+        [data-testid='stFileUploader'] button {
+            color: white !important;
+            background-color: #4CAF50; /* Add a color (like green or dark grey) so white text shows up */
+            border: none;
+        }
 
     /* 6. Pulsing animation for the border */
     @keyframes border-pulse {
@@ -433,3 +437,4 @@ if api_key:
 else:
 
     st.warning("Please enter API Key in the sidebar.")
+
