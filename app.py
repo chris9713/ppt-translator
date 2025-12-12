@@ -47,10 +47,19 @@ st.markdown("""
         box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3); /* Blue glow shadow */
     }
 
-    /* 5. Button Styling - Force White Text */
+    /* 5. Button Styling */
+    
+        /* A. NORMAL STATE (Not moused over) */
         [data-testid='stFileUploader'] button {
-            color: white !important;
-            background-color: #4CAF50; /* Add a color (like green or dark grey) so white text shows up */
+            color: white !important;              /* TEXT COLOR (Normal) */
+            background-color: #4CAF50;            /* BACKGROUND COLOR (Normal) */
+            border: none;
+        }
+    
+        /* B. HOVER STATE (Moused over) */
+        [data-testid='stFileUploader'] button:hover {
+            color: white !important;              /* TEXT COLOR (Hover) */
+            background-color: #45a049;            /* BACKGROUND COLOR (Hover) */
             border: none;
         }
 
@@ -437,4 +446,5 @@ if api_key:
 else:
 
     st.warning("Please enter API Key in the sidebar.")
+
 
